@@ -1,0 +1,27 @@
+# Exp.3 — Geometry & dimension (Figures 11–14)
+run:
+  name: exp3_geometry
+  seed: 0
+  out_dir: runs
+
+device:
+  device: auto
+  dtype: float32
+
+gamma_grid:
+  gamma_min: 1.0e-3
+  gamma_max: 1.0e3
+  num: 21
+
+eigs:
+  top_k: 50
+  method: exact
+
+geometry:
+  dataset: swiss_roll
+  num_samples: 256
+  ambient_dim: 3
+
+plots:
+  make_figures: true
+  formats: ["pdf", "png"]

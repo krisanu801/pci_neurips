@@ -1,0 +1,44 @@
+# Exp.1 — Synthetic exactness (Figures 2–6)
+run:
+  name: exp1_synthetic
+  seed: 0
+  out_dir: runs
+
+device:
+  device: auto  # auto|cpu|cuda
+  dtype: float32
+
+gamma_grid:
+  gamma_min: 1.0e-3
+  gamma_max: 1.0e3
+  num: 41
+
+eigs:
+  top_k: 20
+  method: exact  # exact|power
+  power_iters: 80
+  power_tol: 1.0e-6
+
+synthetic:
+  num_samples: 256
+  dim: 32
+  num_jacobian_samples: 16  # compute full Jacobian on this many samples for jac_residual/fro_error
+
+datasets:
+  - name: gaussian_diag
+    params:
+      # diagonal covariance eigenvalues (log-spaced)
+      eig_min: 0.1
+      eig_max: 10.0
+  - name: two_point
+    params:
+      mu_norm: 4.0
+  - name: gmm_iso
+    params:
+      k: 3
+      separation: 4.0
+      sigma: 0.6
+
+plots:
+  make_figures: true
+  formats: ["pdf", "png"]

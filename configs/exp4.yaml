@@ -1,0 +1,41 @@
+# Exp.4 — Training dynamics (Figures 15–16)
+# Two modes:
+# - evaluate_checkpoints: read existing checkpoints + evaluate spectra
+# - train_toy: train a tiny model to generate checkpoints (scaffold)
+run:
+  name: exp4_dynamics
+  seed: 0
+  out_dir: runs
+
+device:
+  device: auto
+  dtype: float32
+
+gamma_grid:
+  gamma_min: 1.0e-3
+  gamma_max: 1.0e3
+  num: 41
+
+eigs:
+  top_k: 10
+  method: power
+  power_iters: 60
+  power_tol: 1.0e-6
+
+mode: evaluate_checkpoints
+
+data:
+  dim: 64
+  num_samples: 16
+
+probe:
+  gamma_probe_count: 3
+  checkpoints_count: 6
+
+checkpoints:
+  checkpoint_paths: []   # fill with local paths
+  checkpoint_ids: []     # same length; e.g. ["step_0", "step_1", ...]
+
+plots:
+  make_figures: true
+  formats: ["pdf", "png"]
